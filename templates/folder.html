@@ -1,0 +1,17 @@
+<!-- folder.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Files in {{ category }} {{ year }} Year</title>
+</head>
+<body>
+    <h1>Files in {{ category }} {{ year }} Year</h1>
+    <ul>
+        {% for file in files %}
+            <li>{{ file }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

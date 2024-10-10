@@ -1,0 +1,29 @@
+<!-- result.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Categorized Files</title>
+</head >
+<body>
+    <h1>Categorized Files</h1>
+    <h2>CW Folders</h2>
+    <ul>
+        {% for year in ['1st', '2nd', '3rd', '4th'] %}
+            <li>
+                <a href="{{ url_for('show_folder', category='CW', year=year) }}">{{ year }} Year</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>SW Folders</h2>
+    <ul>
+        {% for year in ['1st', '2nd', '3rd', '4th'] %}
+            <li>
+                <a href="{{ url_for('show_folder', category='SW', year=year) }}">{{ year }} Year</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

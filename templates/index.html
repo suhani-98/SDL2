@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Upload Folder and Display Sorted Files</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #7a2b44;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5c1e32;
+        }
+        .sorted-files {
+            margin-top: 20px;
+            text-align: left;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload a Folder Containing CW or SW Files</h1>
+        <form action="/upload-folder" method="POST" enctype="multipart/form-data">
+            <label for="folder">Choose Folder:</label>
+            <input type="file" name="folder" webkitdirectory directory multiple>
+            <br>
+            <button type="submit">Upload</button>
+        </form>
+        <hr>
+
+        {% if sorted_files %}
+            <div class="sorted-files">
+                <h2>Sorted Files</h2>
+                {% for category, years in sorted_files.items() %}
+                    <h3>{{ category }}</h3>
+                    {% for year, files in years.items() %}
+                        <h4>{{ year }}</h4>
+                        <ul>
+                            {% for file in files %}
+                                <li>{{ file }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No files uploaded yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
